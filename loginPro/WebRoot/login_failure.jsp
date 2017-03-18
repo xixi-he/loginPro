@@ -1,8 +1,4 @@
 <%@ page language="java" import="java.util.*" contentType="text/html; charset=utf-8"%>
-<jsp:useBean id="loginuser" class="com.po.Users" scope="page"></jsp:useBean>
-<jsp:useBean id="userDAO" class="com.dao.UsersDAO" scope="page"></jsp:useBean>
-<<jsp:setProperty property="*" name="loginuser"/>
-
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
@@ -13,7 +9,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   <head>
     <base href="<%=basePath%>">
     
-    <title>登录</title>
+    <title>My JSP 'login_failure.jsp' starting page</title>
     
 	<meta http-equiv="pragma" content="no-cache">
 	<meta http-equiv="cache-control" content="no-cache">
@@ -27,16 +23,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   </head>
   
   <body>
-     <% 
-     	if(userDAO.usersLogin(loginuser))
-     	{
-     		session.setAttribute("loginuser", loginuser.getUsername());
-     		request.getRequestDispatcher("login_success.jsp").forward(request, response);
-     	}
-     	else
-     	{
-     		response.sendRedirect("login_failure.jsp");
-     	}
-      %>
+    <h1>登录失败</h1>
   </body>
 </html>
