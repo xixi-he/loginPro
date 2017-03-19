@@ -23,6 +23,39 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   </head>
   
   <body>
-    <h1>welcome</h1>
+	<% 
+		String user = "";
+		if(session.getAttribute("loginuser")!=null)
+		{
+			user = session.getAttribute("loginuser").toString();
+		}  	
+	%>
+	<% 
+		String username = "";
+		String password = "";
+		Cookie[] cookies = request.getCookies();
+		if(cookies!=null&&cookies.length>0)
+		{
+			
+			for(Cookie c:cookies)
+			{
+				String tmp = c.getName();
+				/* out.println("we got the cookies : "+tmp); */
+				if(c.getName().equals("username"))
+				{
+					/* out.println("okokokoko"); */
+					username = c.getValue();
+				}
+				if(c.getName().equals("password"))
+				{
+					password = c.getValue();
+				}
+			}
+		}
+	 %>
+    <h1>welcome:<font color="red"><%=user %></font></h1>
+    <hr/>
+    <h2>用户名：<%= username %></h2>
+    <h2>密码：<%= password %></h2>
   </body>
 </html>
